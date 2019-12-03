@@ -6,26 +6,9 @@ def unitsTestImageTitle = "dreamkas-units"
 pipeline{
     agent any
     stages{
-
-        stage("Workspace Cleanup"){
-            steps{
-                script{
-                    if("${IS_WORKSPACE_CLEANING_NEEDED}" == "Yes"){
-                        echo "Cleaning up workspace..." 
-                        cleanWs()
-                    }
-                }
-            }
-        }
-        
+      
         stage("Checkout"){
             steps{
-
-                echo "Cloning FisGo-CI repository code..."
-                dir("ci") {
-                    git credentialsId: "fisgo-ci-github", url: "https://github.com/egorsego/docker-build.git", branch: "master"
-                }
-
                 echo "Cloning FisGo-F Library repository code..."
                 dir("FisGo") {
                     git credentialsId: "fisgo-ci-github", url: "https://github.com/dreamkas/FisGo_F.git", branch: "develop"
@@ -33,7 +16,7 @@ pipeline{
             }
         }
  
-        stage("Build Compiler Image"){
+        stage("Build"){
             steps{
                 echo 'Removing old Compiler image...'
                 sh "docker rmi ${compilerImageTitle}:latest || true"
@@ -42,17 +25,9 @@ pipeline{
                 script {
                     docker.build(compilerImageTitle + ":latest", "-f ${env.WORKSPACE}/ci/rf_compiler/compiler.dockerfile .")
                 }
-            }
 
-            post{
-                always{
-                    removeUnusedContainersAndDanglingImages()
-                }
-            }
-        }
+                echo "============================="
 
-        stage("Build Library Image"){
-            steps{
                 echo "Removing old Library image..."
                 sh "docker rmi ${libraryImageTitle}:latest || true" 
 
@@ -66,23 +41,9 @@ pipeline{
 
                 echo "Copying files from image..."
                 sh "docker cp libraryContainer:/tmp/FisGo/PATCH/lib ./FisGo/PATCH"
-                //sh "find ./FisGo/tmp -type f -name '*.so' -exec cp '{}' ./FisGo/PATCH/lib/ ';'"
-                //sh "rm -r ./FisGo/tmp"
-            }
 
-            post{
-                success{
-                    echo "Archiving artifacts..."
-                    //archiveArtifacts artifacts: "**/FisGo/PATCH/lib/**/*"
-                }
-                always{
-                    removeUnusedContainersAndDanglingImages()
-                }
-            }
-        }
- 
-        stage("Build Fiscat Image"){
-            steps{
+                echo "============================="
+
                 echo "Building Fiscat image..."
                 script {
                     docker.build(fiscatImageTitle + ":latest", "-f ${env.WORKSPACE}/ci/fiscat/fiscat.dockerfile .")
@@ -93,22 +54,11 @@ pipeline{
 
                 echo "Copying files from image..."
                 sh "mkdir -p ./FisGo/build/fiscat"
-                sh "docker cp fiscatContainer:/tmp/FisGo/build/fiscat ./FisGo/build/fiscat"
-            }
+                sh "docker cp fiscatContainer:/tmp/FisGo/build/fiscat ./FisGo/PATCH/FisGo"
 
-            post{
-                success{
-                    echo "Archiving artifacts..."
-                    //archiveArtifacts artifacts: "**/FisGo/build/fiscat/*"
-                }
-                always{
-                    removeUnusedContainersAndDanglingImages()
-                }
-            }
-        }
-/* 
-        stage("Build Units Test Image"){
-            steps{
+/*
+                echo "============================="
+
                 echo "Building Units Test image..."
                 script {
                     docker.build(unitsTestImageTitle + ":latest", "-f ${env.WORKSPACE}/ci/units/units.dockerfile .")
@@ -119,28 +69,52 @@ pipeline{
 
                 echo "Copying files from image..."
                 sh "mkdir -p ./FisGo/build/units"
-                sh "docker cp unitsContainer:/tmp/FisGo/build/units ./FisGo/build/units"
+                sh "docker cp unitsContainer:/tmp/FisGo/build/units ./FisGo/PATCH/FisGo"
+*/
             }
 
             post{
-                success{
-                    echo "Archiving artifacts..."
-                    //archiveArtifacts artifacts: "/FisGo/build/units/*"
-                }
                 always{
                     removeUnusedContainersAndDanglingImages()
+                }
+                success{
+                    echo "Archiving artifacts..."
+                    archiveArtifacts artifacts: "**/FisGo/PATCH/**/*"
                 }
             }
         }
 
-        stage("SSH Test"){
+        stage("Patch"){
             steps{
-                echo "Testing SSH Connection"
-                //sh "scp ./test_file_2811 root@192.168.242.180:/FisGo"
-                //sh "ssh -T root@192.168.242.180 < ${env.WORKSPACE}/ci/bash_scripts/test_script.sh"
+                echo "Creating delete list file..."
+                sh '''
+                    cd ./FisGo/PATCH/
+                    find . -type f -not -path "*etc/init.*" > ../deleteList
+                '''
+                
+                echo "Copying deletelist to Cashbox..."
+                sh "scp ./FisGo/deleteList root@192.168.242.180:/"
+
+                echo "Shutting down fiscat..."
+                sh "ssh -T root@192.168.242.180 < ${env.WORKSPACE}/ci/bash_scripts/shutdown_fiscat.sh"
+                
+                echo "Removing files present in deletelist..."
+                sh "ssh -T root@192.168.242.180 < ${env.WORKSPACE}/ci/bash_scripts/delete_files.sh"
+
+                echo "Patching files..."
+                sh "scp -r ./FisGo/PATCH/. root@192.168.242.180:/"
+
+                echo "Setting up file permissions..."
+                sh "ssh -T root@192.168.242.180 < ${env.WORKSPACE}/ci/bash_scripts/apply_permissions.sh"
+
+                echo "Restarting fiscat..."
+                sh "ssh -T root@192.168.242.180 < ${env.WORKSPACE}/ci/bash_scripts/restart_fiscat.sh"
+
+                echo "Removing deleteList file..."
+                sh "ssh -T root@192.168.242.180 < ${env.WORKSPACE}/ci/bash_scripts/remove_deletelist.sh"
             }
         }
-*/
+   
         stage("Test"){
             steps{
                 dir("AutoTests"){
