@@ -1,7 +1,7 @@
 #!/bin/bash
 
 TOKEN=$1
-CONTEXT=$2
+CONTEXT="$2"
 
 curl "https://api.GitHub.com/repos/egorsego/docker-build/statuses/$GIT_COMMIT?access_token=$TOKEN" \
 -H "Content-Type: application/json" \
