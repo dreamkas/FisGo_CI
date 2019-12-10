@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cd / 
-FisGo/units
+cd /FisGo/
+./units
