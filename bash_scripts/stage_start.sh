@@ -3,6 +3,10 @@
 TOKEN=$1
 CONTEXT="$2"
 
+echo "Token: $TOKEN"
+echo "Context: $CONTEXT"
+echo "Commit: $GIT_COMMIT"
+
 curl "https://api.GitHub.com/repos/dreamkas/FisGo_F/statuses/$GIT_COMMIT?access_token=$TOKEN" \
 -H "Content-Type: application/json" \
 -X POST \
