@@ -11,4 +11,4 @@ echo "Context: $CONTEXT"
 curl "https://api.GitHub.com/repos/dreamkas/FisGo_F/statuses/$GIT_COMMIT?access_token=$TOKEN" \
 -H "Content-Type: application/json" \
 -X POST \
--d "{\"state\": \"failure\", \"context\": \"Jenkins-CI: [$CONTEXT Stage]\", \"description\": \"Failed Miserably\", \"target_url\": \"$RUN_DISPLAY_URL\"}"
+-d "{\"state\": \"failure\", \"context\": \"Jenkins-CI: [$CONTEXT]\", \"description\": \"Failed Miserably\", \"target_url\": \"$RUN_DISPLAY_URL\"}"
