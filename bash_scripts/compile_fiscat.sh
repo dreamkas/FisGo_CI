@@ -2,7 +2,7 @@
 
 CONTAINER=$1
 
-docker run --name $CONTAINER -it dreamkas-sf-library
+docker run --name $CONTAINER dreamkas-sf-library /bin/bash
 mkdir build
 cd /build/
 cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=On ..
