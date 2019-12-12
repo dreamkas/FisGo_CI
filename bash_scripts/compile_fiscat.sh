@@ -1,6 +1,8 @@
 #!/bin/bash
 
-docker run --name fiscatCompiler -it dreamkas-sf-library
+CONTAINER=$1
+
+docker run --name $CONTAINER -it dreamkas-sf-library
 mkdir build
 cd /build/
 cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=On ..

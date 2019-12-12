@@ -1,6 +1,8 @@
 #!/bin/bash
 
-docker run --name unitsCompiler -it dreamkas-sf-library
+CONTAINER=$1
+
+docker run --name $CONTAINER -it dreamkas-sf-library
 sed 's/#add_definitions(-DG_UNIT)/add_definitions(-DG_UNIT)/g' -i CMakeLists.txt
 mkdir build
 cd /build/
