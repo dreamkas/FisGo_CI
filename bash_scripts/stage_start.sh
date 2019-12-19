@@ -8,8 +8,7 @@ echo "Commit: $GIT_COMMIT"
 echo "Branch: $GIT_BRANCH"
 echo "Context: $CONTEXT"
 
-echo "`git tag --points-at $GIT_COMMIT`"
-
+#echo "`git tag --points-at $GIT_COMMIT`"
 
 curl "https://api.GitHub.com/repos/dreamkas/FisGo_F/statuses/$GIT_COMMIT?access_token=$TOKEN" \
 -H "Content-Type: application/json" \
