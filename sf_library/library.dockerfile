@@ -4,7 +4,8 @@ ADD     /FisGo tmp/FisGo
 WORKDIR /tmp/FisGo/Libraries
 RUN     ./deployLibs.bash 1 n
 WORKDIR /tmp/FisGo
-RUN     tar -cvf libs.tar /tmp/FisGo/*.so
+RUN     whereis tar
+RUN     tar -cvf libs.tar ./*.so
 RUN     ls -la
 RUN     find . -type f -name '*.so' -exec cp '{}' /tmp/FisGo/PATCH/lib/ ';'
 
