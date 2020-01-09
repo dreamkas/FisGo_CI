@@ -18,5 +18,6 @@ RUN sudo su - \
     && wget -O /etc/apt/sources.list.d/viva64.list \
     https://files.viva64.com/etc/viva64.list \
     && apt-get update \ 
-    && apt install pvs-studio \
+    && apt install -y \
+    pvs-studio \
     && pvs-studio-analyzer credentials e.aleksandrov@dreamkas.ru RDA0-5S20-1NCG-TR8E
