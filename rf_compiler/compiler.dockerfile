@@ -13,7 +13,8 @@ RUN cd /tmp && \
     git clone --branch=master https://github.com/dreamkas/DreamkasRfCompiler.git && \
     7z x /tmp/DreamkasRfCompiler/arm-linux-compiler.7z.001 -o/usr/local && \
     7z x /tmp/DreamkasRfCompiler/arm_linux_4.8.7z -o/usr/local
-RUN wget -q -O - https://files.viva64.com/etc/pubkey.txt | apt-key add - \
- && wget -O /etc/apt/sources.list.d/viva64.list \
+RUN sudo su - \
+    wget -q -O - https://files.viva64.com/etc/pubkey.txt | apt-key add --no-tty - \
+    && wget -O /etc/apt/sources.list.d/viva64.list \
     https://files.viva64.com/etc/viva64.list \
- && apt install pvs-studio
+    && apt install pvs-studio
