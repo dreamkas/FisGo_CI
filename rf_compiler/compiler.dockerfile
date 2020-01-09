@@ -4,6 +4,7 @@ RUN apt-get update && \
     apt-get install -y \
     sudo \
     wget \
+    gnupg \
     git \
     p7zip-full \
     cmake \ 
