@@ -1,5 +1,4 @@
 #!/bin/bash
 
 cd ./build/
-pvs-studio-analyzer analyze -j4 --disableLicenseExpirationCheck
-plog-converter -a GA:1,2 -t xml -o ./pvs_report.xml ./PVS-Studio.log
+pvs-studio-analyzer analyze -j4 --disableLicenseExpirationCheck -r /tmp/FisGo -e /usr/local/arm_linux_4.8/arm-nuvoton-linux-uclibceabi
