@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM debian:buster-slim
 
 RUN apt-get update && \ 
     apt-get install -y \
@@ -7,7 +7,7 @@ RUN apt-get update && \
     gnupg2 \
     git \
     p7zip-full \
-    software-properties-common \
+    cmake \
     lib32gcc-7-dev
 RUN cd /tmp && \
     git clone --branch=master https://github.com/dreamkas/DreamkasRfCompiler.git && \
@@ -16,10 +16,7 @@ RUN cd /tmp && \
 RUN sudo su - && \
     wget -qO - https://files.viva64.com/etc/pubkey.txt | apt-key add - && \
     wget -O /etc/apt/sources.list.d/viva64.list https://files.viva64.com/etc/viva64.list && \
-    wget -qO - https://apt.kitware.com/keys/kitware-archive-latest.asc | apt-key add - && \
-    apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main' && \
     apt-get update && \ 
     apt-get install -y \
-    cmake \
     pvs-studio && \
     pvs-studio-analyzer credentials e.aleksandrov@dreamkas.ru RDA0-5S20-1NCG-TR8E
