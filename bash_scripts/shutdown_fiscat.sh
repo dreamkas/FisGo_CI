@@ -2,6 +2,6 @@
 
 cd /FisGo/
 rm ./outf
+rm ./outp
 killall fiscat
-killall wpa_supplicant
-rmmod 8188eu
+killall punix
