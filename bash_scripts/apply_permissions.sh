@@ -7,4 +7,5 @@ chmod +x /usr/bin/cash
 
 cd /FisGo
 chmod +x fiscat
+chmod +x punix
 chmod +x units
