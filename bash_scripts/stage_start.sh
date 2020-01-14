@@ -10,7 +10,7 @@ echo "Context: $CONTEXT"
 
 #echo "`git tag --points-at $GIT_COMMIT`"
 
-curl "https://api.GitHub.com/repos/dreamkas/FisGo_F/statuses/$GIT_COMMIT?access_token=$TOKEN" \
+curl "https://api.GitHub.com/repos/dreamkas/Dreamkas_F/statuses/$GIT_COMMIT?access_token=$TOKEN" \
 -H "Content-Type: application/json" \
 -X POST \
 -d "{\"state\": \"pending\", \"context\": \"Jenkins-CI: [$CONTEXT]\", \"target_url\": \"$RUN_DISPLAY_URL\"}"
