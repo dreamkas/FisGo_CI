@@ -1,4 +1,4 @@
-FROM    dreamkas-rf-compiler
+FROM    dreamkas-compiler
 
 ADD     /FisGo tmp/FisGo
 WORKDIR /tmp/FisGo/Libraries
