@@ -1,8 +1,7 @@
 #!/bin/bash
 
-sed 's/#add_definitions(-DG_UNIT)/add_definitions(-DG_UNIT)/g' -i CMakeLists.txt
 mkdir build
 cd ./build/
-cmake ..
+cmake -BUILD_DREAMKAS_RB=On -BUILD_UNITS=On -BUILD_DREAMKAS_RF=Off ..
 make -j4
 exit $?

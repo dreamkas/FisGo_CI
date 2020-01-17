@@ -1,8 +1,7 @@
 #!/bin/bash
 
-sed 's/#add_definitions(-DG_UNIT)/add_definitions(-DG_UNIT)/g' -i CMakeLists.txt
 mkdir build
-cd ./build/
-cmake ..
+cd ./build
+cmake -BUILD_UNITS=On ..
 make -j4
 exit $?
