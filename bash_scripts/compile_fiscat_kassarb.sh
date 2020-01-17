@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mkdir build
-cd ./build/
-cmake -BUILD_DREAMKAS_RB=On -BUILD_DREAMKAS_RF=Off -DCMAKE_EXPORT_COMPILE_COMMANDS=On ..
+cd ./build
+cmake -BUILD_DREAMKAS_RF=OFF -BUILD_DREAMKAS_RB=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
 make -j4
 exit $?
