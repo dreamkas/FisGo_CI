@@ -2,6 +2,6 @@
 
 mkdir build
 cd ./build
-cmake -BUILD_UNITS=On ..
+cmake -DBUILD_UNITS=On ..
 make -j4
 exit $?

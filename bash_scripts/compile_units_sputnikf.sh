@@ -2,6 +2,6 @@
 
 mkdir build
 cd ./build/
-cmake -BUILD_SPUTNIK_F=On -BUILD_UNITS=On -BUILD_DREAMKAS_RF=Off ..
+cmake -DBUILD_SPUTNIK_F=ON -DBUILD_UNITS=ON -DBUILD_DREAMKAS_RF=OFF ..
 make -j4
 exit $?
