@@ -19,4 +19,4 @@ RUN sudo su - && \
     apt-get update && \ 
     apt-get install -y \
     pvs-studio && \
-    pvs-studio-analyzer credentials e.aleksandrov@dreamkas.ru RDA0-5S20-1NCG-TR8E
+    pvs-studio-analyzer credentials e.aleksandrov@dreamkas.ru RDA0-5E7W-1NG0-TSRA
