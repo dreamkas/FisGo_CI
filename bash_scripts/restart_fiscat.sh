@@ -2,5 +2,5 @@
 
 cd /
 cd FisGo/
-./fiscat >>/FisGo/outf &
 ./punix >>/FisGo/outp &
+./fiscat >>/FisGo/outf &
