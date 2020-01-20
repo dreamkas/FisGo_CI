@@ -8,4 +8,4 @@ MD5=${args[3]}
 
 curl -F "file=@${FILE}" \
 -H "BACKEND-TOKEN: ${TOKEN}" \
--url "https://update.dreamkas.ru/v2/projects/fisgo/products/pulseFA/patches/${VERSION}?md5=${MD5}&barrier=false&enabled=false"
+-url "https://update-beta.dreamkas.ru/v2/projects/fisgo/products/sputnikF/patches/${VERSION}?md5=${MD5}&barrier=false&enabled=false"
