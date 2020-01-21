@@ -2,7 +2,7 @@
 
 cd /
 cd FisGo/
-rm outf
-rm outp
+rm outf || true
+rm outp || true
 killall fiscat
 killall pilarus
