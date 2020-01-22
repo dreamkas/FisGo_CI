@@ -2,7 +2,7 @@
 
 cd /
 cd FisGo/
-rm outf
-rm outp
-killall fiscat
-killall punix
+rm outf || true
+rm outp || true
+killall fiscat || true
+killall punix || true
