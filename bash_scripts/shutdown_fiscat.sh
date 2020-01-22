@@ -2,7 +2,7 @@
 
 cd /
 cd FisGo/
-rm outf
-killall fiscat
-killall wpa_supplicant
-rmmod 8188eu
+rm outf || true
+killall fiscat || true
+killall wpa_supplicant || true
+rmmod 8188eu || true
