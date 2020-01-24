@@ -6,3 +6,4 @@ rm outf || true
 rm outp || true
 killall fiscat || true
 killall punix || true
+killall crond || true
