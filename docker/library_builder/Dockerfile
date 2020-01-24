@@ -1,7 +1,10 @@
 FROM    dreamkas-compiler
 
+ARG		device_ip
+
 ADD     /FisGo tmp/FisGo
 WORKDIR /tmp/FisGo/Libraries
+RUN		./deployLibs.bash 1 y ${device_ip}
 RUN     ./deployLibs.bash 1 n
 WORKDIR /tmp/FisGo
 
