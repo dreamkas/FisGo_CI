@@ -5,6 +5,7 @@ RUN apt-get update && \
     sudo \
     wget \
     gnupg2 \
+    sshpass \
     git \
     p7zip-full \
     cmake \
