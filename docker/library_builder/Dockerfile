@@ -1,6 +1,5 @@
 FROM    dreamkas-compiler
 
-<<<<<<< Updated upstream
 ARG	    kassaf_ip
 ARG     kassaf_root_pass
 ARG	    kassarb_ip
@@ -18,11 +17,6 @@ WORKDIR /tmp/FisGo/Libraries
 RUN     ./deployLibs.bash 2 y ${kassaf_ip}
 RUN     ./deployLibs.bash 2 y ${kassarb_ip}
 RUN     ./deployLibs.bash 2 y ${sputnikf_ip}
-=======
-ADD     /FisGo tmp/FisGo
-WORKDIR /tmp/FisGo/Libraries
-RUN     ./deployLibs.bash 1 n
->>>>>>> Stashed changes
 WORKDIR /tmp/FisGo
 
 ENV     LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/usr/lib/
