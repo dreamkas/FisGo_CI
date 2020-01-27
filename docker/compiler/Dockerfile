@@ -5,6 +5,7 @@ RUN apt-get update && \
     sudo \
     wget \
     gnupg2 \
+    sshpass \
     git \
     p7zip-full \
     cmake \
@@ -13,10 +14,3 @@ RUN cd /tmp && \
     git clone --branch=master https://github.com/dreamkas/DreamkasRfCompiler.git && \
     7z x /tmp/DreamkasRfCompiler/arm-linux-compiler.7z.001 -o/usr/local && \
     7z x /tmp/DreamkasRfCompiler/arm_linux_4.8.7z -o/usr/local
-RUN sudo su - && \
-    wget -qO - https://files.viva64.com/etc/pubkey.txt | apt-key add - && \
-    wget -O /etc/apt/sources.list.d/viva64.list https://files.viva64.com/etc/viva64.list && \
-    apt-get update && \ 
-    apt-get install -y \
-    pvs-studio && \
-    pvs-studio-analyzer credentials e.aleksandrov@dreamkas.ru RDA0-5E7W-1NG0-TSRA
