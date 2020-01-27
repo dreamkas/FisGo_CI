@@ -10,8 +10,7 @@ RUN apt-get update && \
     p7zip-full \
     cmake \
     lib32gcc-7-dev
-RUN ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa && \
-    cd tmp && \
+RUN cd tmp && \
     git clone --branch=master https://github.com/dreamkas/DreamkasRfCompiler.git && \
     7z x /tmp/DreamkasRfCompiler/arm-linux-compiler.7z.001 -o/usr/local && \
     7z x /tmp/DreamkasRfCompiler/arm_linux_4.8.7z -o/usr/local
