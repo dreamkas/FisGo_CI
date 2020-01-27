@@ -1,9 +1,6 @@
 #!/bin/bash
 
-args=("$@")
-DEVICE_IP=${args[0]}
-
-sshpass -p root ssh-copy-id -o StrictHostKeyChecking=no root@$DEVICE_IP
+ssh-keygen -q -t rsa -N '' -f ~/.ssh/id_rsa
+sshpass -p root ssh-copy-id -o StrictHostKeyChecking=no root@192.168.242.196
 cd Libraries/
-chmod + x ./deployLibs.bash
-./deployLibs.bash 1 y $DEVICE_IP
+./deployLibs.bash 1 y 192.168.242.196
