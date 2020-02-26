@@ -5,8 +5,7 @@ ARG GIT_PASSWORD=1234
 
 RUN apt-get update && \ 
     apt-get install -y \
-    sudo \
     git
     
 RUN cd tmp && \
-    git clone --branch=ci https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/dreamkas/FisGoTests.git
+    git clone --branch=experimental https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/dreamkas/FisGoTests.git
