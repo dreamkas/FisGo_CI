@@ -8,6 +8,6 @@ RUN apt-get update && \
     git
     
 RUN cd tmp && \
-    git clone --branch=experimental https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/dreamkas/FisGoTests.git && \
+    git clone --branch=ci https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/dreamkas/FisGoTests.git && \
     cd FisGoTests && \
     mvn test-compile
