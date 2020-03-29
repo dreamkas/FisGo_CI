@@ -1,9 +1,9 @@
 #!/bin/bash
 
 sleep 5
-killall wpa_supplicant
-killall fiscat
-killall punix
+killall wpa_supplicant || true
+killall fiscat || true
+killall punix || true
 sleep 5
 /usr/sbin/wpa_supplicant -Dnl80211 -iwlan0 -c/FisGo/wpa_supplicant.conf &
 sleep 10
