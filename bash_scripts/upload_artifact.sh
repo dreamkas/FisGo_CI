@@ -13,4 +13,4 @@ curl -sSf \
        -X PUT \
        -T ${FILE_PATH} \
        --header "X-Checksum-MD5:${MD5}" \
-       '${SERVER}/${DIRECTORY}/${FILE}'
+       "${SERVER}/${DIRECTORY}/${FILE}"
