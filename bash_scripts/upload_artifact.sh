@@ -8,8 +8,7 @@ FILE_PATH=${args[3]}
 FILE=${args[4]}
 MD5=${args[5]}
 
-#curl -sSf \
-curl \
+curl -sSf \
        -H "X-JFrog-Art-Api:${API_TOKEN}" \
        -X PUT \
        -T ${FILE_PATH} \
