@@ -3,9 +3,9 @@
 args=("$@")
 RELAY_SERVER=${args[0]}
 CHAT=${args[1]}
-PRODUCT_TYPE=${args[2]}
-VERSION=${args[3]}
-DOWNLOAD_LINK=${args[4]}
+#PRODUCT_TYPE=${args[2]}
+#VERSION=${args[3]}
+#DOWNLOAD_LINK=${args[4]}
 RELEASE_NOTES=${args[5]}
 
 #curl --request POST \
