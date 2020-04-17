@@ -11,5 +11,4 @@ RELEASE_NOTES=${args[2]}
 #curl --request POST \
 #"${RELAY_SERVER}?chat_id=${CHAT}&parse_mode=markdown&text=Для *${PRODUCT_TYPE}* выпущена новая версия - *${VERSION}*.%0AАрхив DirPatch доступен по ссылке:%0A${DOWNLOAD_LINK}"
 
-curl --request POST \
-"${RELAY_SERVER}?chat_id=${CHAT}&parse_mode=markdown&text=${RELEASE_NOTES}"
+curl --request POST "${RELAY_SERVER}?chat_id=${CHAT}&parse_mode=markdown&text=${RELEASE_NOTES}"
