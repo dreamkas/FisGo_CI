@@ -9,4 +9,4 @@ INFO=${args[4]}
 
 curl -F "file=@${FILE}" \
 -H "BACKEND-TOKEN: ${TOKEN}" \
---url "https://update-beta.dreamkas.ru/v2/projects/fisgo/products/dreamkasFRedirect/patches/${VERSION}?md5=${MD5}&barrier=false&enabled=false&info=${INFO}"
+--url "https://update-beta.dreamkas.ru/v2/projects/fisgo/products/dreamkasFRedirect/patches/${VERSION}?md5=${MD5}&info=${INFO}&barrier=false&enabled=false"
