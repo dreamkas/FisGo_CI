@@ -1,8 +1,8 @@
 FROM    dreamkas-compiler
-#ADD     /Kassa_F tmp/Kassa_F
+ADD     /Kassa_F tmp/Kassa_F
 ADD     /pirit2f_ppp tmp/pirit2f_ppp
-#WORKDIR /tmp/Kassa_F/Libraries/
-#RUN     ./deployLibs.bash 2 n
+WORKDIR /tmp/Kassa_F/Libraries/
+RUN     ./deployLibs.bash 2 n
 WORKDIR /tmp/
 
 ENV     PATH=/usr/local/arm_linux_4.8/bin:${PATH}
